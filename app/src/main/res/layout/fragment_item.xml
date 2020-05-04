@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fadingEdgeLength="24dp"
+        android:padding="24dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/layout_interno"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:padding="16dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="8dp"
+                android:background="#FF0000"
+                android:elevation="12dp"
+                android:padding="8dp"
+                app:srcCompat="@drawable/teste_imagem1" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/foto"
+                android:layout_width="110dp"
+                android:layout_height="150dp"
+                android:elevation="16dp"
+                app:layout_anchor="@+id/appCompatImageView"
+                app:layout_anchorGravity="center"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="222dp"
+                android:elevation="8dp"
+                android:fontFamily="sans-serif-light"
+                android:background="#FF0000"
+                android:textColor="#FFFFFF"
+                android:padding="8dp"
+                android:text="@string/primeiro_texto"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="262dp"
+                android:elevation="12dp"
+                android:fontFamily="sans-serif-light"
+                android:background="#FF0000"
+                android:textColor="#FFFFFF"
+                android:padding="8dp"
+                android:text="@string/segundo_texto"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="302dp"
+                android:elevation="12dp"
+                android:fontFamily="sans-serif-light"
+                android:background="#FF0000"
+                android:textColor="#FFFFFF"
+                android:padding="8dp"
+                android:text="Terceiro Texto"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
