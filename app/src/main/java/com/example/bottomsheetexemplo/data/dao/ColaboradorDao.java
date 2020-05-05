@@ -15,16 +15,16 @@ public class ColaboradorDao {
         try {
             pst = Conexao.conexao().prepareStatement(
                     "Insert Into Colaborador " +
-                            "(nome, cargo, cpf, endereco, email) values " +
-                            "(?,?,?,?,?)");
+                            "(nome, cargo, cpf, endereco, email, caminhoFoto, foto) values " +
+                            "(?,?,?,?,?,?,?)");
             //pst.setInt(1, colab.getId());
             pst.setString(1, colab.getNome());
             pst.setString(2, colab.getCargo());
             pst.setString(3, colab.getCpf());
             pst.setString(4, colab.getEndereco());
             pst.setString(5, colab.getEmail());
-           /* pst.setString(7, colab.getCaminhoFoto());
-            pst.setBytes(8, colab.getFoto());*/
+            pst.setString(6, colab.getCaminhoFoto());
+            pst.setBytes(7, colab.getFoto());
 
             resultado = pst.executeUpdate();
 

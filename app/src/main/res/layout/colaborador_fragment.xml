@@ -1,108 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     tools:context=".ColaboradorFragment">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/layout_colaborador"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:isScrollContainer="true"
+        android:scrollbars="vertical"
+        android:visibility="visible">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_nome"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_colaborador"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtNome"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_fotoColab"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/editFotoColab"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="top|end"
+                        android:contentDescription="@string/editar_foto"
+                        app:srcCompat="@drawable/ic_action_edit" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/capturaFotoColab"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="top|end"
+                        android:contentDescription="@string/editar_foto"
+                        app:srcCompat="@drawable/ic_action_camera" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/fotoColab"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="end"
+                    android:background="@color/colorAccent"
+                    android:contentDescription="@string/foto_colaborador"
+                    app:srcCompat="@drawable/ic_action_colab2" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_nome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/nome"
-                android:inputType="textPersonName" />
+                android:layout_margin="8dp"
+                android:padding="8dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_action_colab2"
+                    android:elegantTextHeight="true"
+                    android:hint="@string/nome"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="8dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_cargo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtCargo"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_cargo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/cargo"
-                android:inputType="textPersonName" />
+                android:layout_margin="8dp"
+                android:padding="8dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtCargo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_action_cargo"
+                    android:elegantTextHeight="true"
+                    android:hint="@string/cargo"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="8dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_cpf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtCpf"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_cpf"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/cpf"
-                android:inputType="number" />
+                android:layout_margin="8dp"
+                android:padding="8dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtCpf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_action_cpf"
+                    android:elegantTextHeight="true"
+                    android:hint="@string/cpf"
+                    android:inputType="number"
+                    android:paddingLeft="8dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_endereco"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtEndereco"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_endereco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/endereco"
-                android:inputType="textPostalAddress" />
+                android:layout_margin="8dp"
+                android:padding="8dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtEndereco"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_action_endereco"
+                    android:elegantTextHeight="true"
+                    android:hint="@string/endereco"
+                    android:inputType="textPostalAddress"
+                    android:paddingLeft="8dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtEmail"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress" />
+                android:layout_margin="8dp"
+                android:padding="8dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_action_email"
+                    android:elegantTextHeight="true"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="8dp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSalvarColab"
-            style="@style/BotaoPadrao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:padding="8dp"
-            android:text="@string/salvar_colaborador"
-            />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSalvarColab"
+                style="@style/BotaoPadrao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="8dp"
+                android:text="@string/salvar_colaborador" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>
 

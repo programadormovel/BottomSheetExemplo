@@ -49,6 +49,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         Bitmap bitmap = converterByteToBipmap(mValues.get(position).getFoto());
 
         if (bitmap != null) {
+            holder.mFotoView.setScaleType(AppCompatImageView.ScaleType.FIT_XY);
             holder.mFotoView.setImageBitmap(bitmap);
         }
 
@@ -66,15 +67,20 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     public Bitmap converterByteToBipmap(byte[] foto) {
         Bitmap bmp = null;
+        Bitmap bitmapReduzido = null;
         byte[] x = foto;
 
         try {
-            bmp = BitmapFactory.decodeByteArray(x, 0, foto.length);
+            bmp = BitmapFactory.decodeByteArray(x, 0, x.length);
+
+            bitmapReduzido = Bitmap.createScaledBitmap(bmp, 1080, 1000, true);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return bmp;
+        return bitmapReduzido;
     }
 
     @Override

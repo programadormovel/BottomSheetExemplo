@@ -17,4 +17,6 @@
     <string name="cpf">CPF</string>
     <string name="cargo">Cargo</string>
     <string name="nome">Nome</string>
+    <string name="editar_foto">Editar Foto</string>
+    <string name="foto_colaborador">Foto Colaborador</string>
 </resources>

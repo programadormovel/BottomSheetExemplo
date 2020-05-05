@@ -42,5 +42,17 @@
         <action
             android:id="@+id/action_itemFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_itemFragment_to_colaboradorFragment"
+            app:destination="@id/colaboradorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/colaboradorFragment"
+        android:name="com.example.bottomsheetexemplo.ColaboradorFragment"
+        android:label="colaborador_fragment"
+        tools:layout="@layout/colaborador_fragment" >
+        <action
+            android:id="@+id/action_colaboradorFragment_to_itemFragment"
+            app:destination="@id/itemFragment" />
     </fragment>
 </navigation>

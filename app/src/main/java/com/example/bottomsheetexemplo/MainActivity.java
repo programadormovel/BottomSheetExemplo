@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // by PM
         fabAccountPlus = findViewById(R.id.fab_account_plus);
         fabAccountPlus.setVisibility(View.INVISIBLE);
         fabAccountPlus.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity
                 bottomSheet.findViewById(R.id.contLayoutZero).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Snackbar.make(bottomSheet, "Colaboradores", Snackbar.LENGTH_LONG).show();
+//                        Snackbar.make(bottomSheet, "Colaboradores", Snackbar.LENGTH_LONG).show();
                         bottomSheetDialog.dismiss();
 
                         frag = getSupportFragmentManager().beginTransaction();
