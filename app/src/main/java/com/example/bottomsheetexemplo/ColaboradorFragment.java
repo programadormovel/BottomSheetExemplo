@@ -1,6 +1,8 @@
 package com.example.bottomsheetexemplo;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -21,6 +23,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.core.os.EnvironmentCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -38,6 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
+import static androidx.core.content.FileProvider.getUriForFile;
 
 public class ColaboradorFragment extends Fragment {
 
@@ -52,6 +56,7 @@ public class ColaboradorFragment extends Fragment {
     private String currentPhotoPath;
     private Activity activity;
     private Bitmap bitmap;
+    private Uri photoURI;
 
     private ColaboradorViewModel mViewModel;
     private AppCompatEditText edtNome, edtCargo, edtCpf, edtEndereco, edtEmail;
@@ -81,31 +86,7 @@ public class ColaboradorFragment extends Fragment {
         //Objeto activity criado para passagem nos parãmetros de permissões
         activity = getActivity();
 
-        //Condicional para controle de permissões
-        // Verifica se há permissão para leitura de arquivos
-        if (ContextCompat.checkSelfPermission(activity.getBaseContext(),
-                android.Manifest.permission.READ_EXTERNAL_STORAGE) !=
-                PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            } else {
-                ActivityCompat.requestPermissions(activity,
-                        new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSAO_REQUEST);
-            }
-        }
-
-        //Verifica se há permissões para escrita de arquivos
-        if (ContextCompat.checkSelfPermission(activity.getBaseContext(),
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            } else {
-                ActivityCompat.requestPermissions(activity,
-                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSAO_REQUEST);
-            }
-        }
-
+        permissoesAcesso();
 
         mViewModel = new ViewModelProvider(requireActivity())
                 .get(ColaboradorViewModel.class);
@@ -172,6 +153,44 @@ public class ColaboradorFragment extends Fragment {
                 });
     }
 
+    private void permissoesAcesso(){
+        //Condicional para controle de permissões
+        // Verifica se há permissão para leitura de arquivos
+        if (ContextCompat.checkSelfPermission(activity.getBaseContext(),
+                android.Manifest.permission.READ_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            } else {
+                ActivityCompat.requestPermissions(activity,
+                        new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSAO_REQUEST);
+            }
+        }
+
+        //Verifica se há permissões para escrita de arquivos
+        if (ContextCompat.checkSelfPermission(activity.getBaseContext(),
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            } else {
+                ActivityCompat.requestPermissions(activity,
+                        new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSAO_REQUEST);
+            }
+        }
+
+        //Verifica se há permissões para escrita de arquivos
+        if (ContextCompat.checkSelfPermission(activity.getBaseContext(),
+                Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
+                    android.Manifest.permission.CAMERA)) {
+            } else {
+                ActivityCompat.requestPermissions(activity,
+                        new String[]{android.Manifest.permission.CAMERA}, PERMISSAO_REQUEST);
+            }
+        }
+    }
     private void tirarFoto() {
         Intent it = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
@@ -179,15 +198,21 @@ public class ColaboradorFragment extends Fragment {
 
             File photoFile = null;
             try {
+                permissoesAcesso();
                 photoFile = createImageFile();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
 
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(getActivity().getBaseContext(),
+
+                photoURI = getUriForFile(getActivity().getBaseContext(),
                         activity.getBaseContext()
-                                .getApplicationContext().getPackageName() + ".provider", photoFile);
+                                .getApplicationContext().getPackageName()
+                                + ".fileprovider", photoFile);
+
+/*                        photoURI = getUriForFile(activity.getBaseContext(),
+                "com.example.bottomsheetexemplo.fileprovider", photoFile);*/
 
                 it.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
@@ -199,9 +224,10 @@ public class ColaboradorFragment extends Fragment {
 
     //Método para inclusão de imagem na galeria
     private void galleryAddPic() {
-        File f = new File(currentPhotoPath);
+        //File f = new File(currentPhotoPath);
         activity.sendBroadcast(
-                new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(f)));
+                new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
+                        photoURI));
     }
 
     //Método para acessar a galeria
@@ -229,10 +255,21 @@ public class ColaboradorFragment extends Fragment {
         // Decodifica o arquivo de imagem para o Bitmap que preencherá a View
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
+        //bmOptions.inPurgeable = true;
 
         // Cria o bitmap da imagem capturada
         bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
+        /*// recuperada do SD Card
+        InputStream inputStream = null;
+
+        // recuperando a sequencia de entrada, baseada no caminho (uri)
+        // da imagem
+        try {
+            inputStream = activity.getContentResolver().openInputStream(photoURI);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        bitmap = BitmapFactory.decodeStream(inputStream);*/
         // Apresenta a imagem na tela
         imageView.setImageBitmap(bitmap);
     }
@@ -288,14 +325,22 @@ public class ColaboradorFragment extends Fragment {
                 .format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
 
-        // Define a galeria como caminho da imagem para armazenamento
+        // CÓDIGO ANTIGO, PARA VERSÕES ANTERIORES AO ANDROIDX
+        /* Define a galeria como caminho da imagem para armazenamento
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-
         File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",    /* suffix */
-                storageDir      /* directory */
+                imageFileName,  *//* prefix *//*
+                ".jpg",    *//* suffix *//*
+                storageDir      *//* directory *//*
         );
+        */
+
+        // PÓS ANDROIDX
+        // Define a galeria como caminho da imagem para armazenamento
+        File imagePath = new File(activity.getBaseContext().getExternalFilesDir(null),
+                "images");
+        File image = new File(imagePath, "default_image.jpg");
+
 
         // Salva um arquivo: caminho para utilização com ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
@@ -304,4 +349,5 @@ public class ColaboradorFragment extends Fragment {
 
         return image;
     }
+
 }

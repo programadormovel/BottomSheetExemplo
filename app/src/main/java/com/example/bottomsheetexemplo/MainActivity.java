@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity
 
         // by PM
         fabAccountPlus = findViewById(R.id.fab_account_plus);
-        fabAccountPlus.setVisibility(View.INVISIBLE);
+        //fabAccountPlus.setVisibility(View.INVISIBLE);
         fabAccountPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
                 frag.replace(R.id.nav_host_fragment,
                         new ColaboradorFragment())
                 .addToBackStack(null).commit();
-                fabAccountPlus.setVisibility(View.INVISIBLE);
+                //fabAccountPlus.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
                         Snackbar.make(bottomSheet, "Foto", Snackbar.LENGTH_LONG).show();
                         bottomSheetDialog.dismiss();
 
-                        fabAccountPlus.setVisibility(View.INVISIBLE);
+                        //fabAccountPlus.setVisibility(View.INVISIBLE);
                     }
                 });
 
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View v) {
                         Snackbar.make(bottomSheet, "Galeria", Snackbar.LENGTH_LONG).show();
                         bottomSheetDialog.dismiss();
-                        fabAccountPlus.setVisibility(View.INVISIBLE);
+                        //fabAccountPlus.setVisibility(View.INVISIBLE);
                     }
                 });
                 bottomSheet.findViewById(R.id.contLayoutFour).setOnClickListener(new View.OnClickListener() {
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View v) {
                         Snackbar.make(bottomSheet, "Arquivos", Snackbar.LENGTH_LONG).show();
                         bottomSheetDialog.dismiss();
-                        fabAccountPlus.setVisibility(View.INVISIBLE);
+                        //fabAccountPlus.setVisibility(View.INVISIBLE);
                     }
                 });
                 bottomSheet.findViewById(R.id.contLayoutFive).setOnClickListener(new View.OnClickListener() {
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
                     public void onClick(View v) {
                         Snackbar.make(bottomSheet, "Pasta", Snackbar.LENGTH_LONG).show();
                         bottomSheetDialog.dismiss();
-                        fabAccountPlus.setVisibility(View.INVISIBLE);
+                        //fabAccountPlus.setVisibility(View.INVISIBLE);
                     }
                 });
 
