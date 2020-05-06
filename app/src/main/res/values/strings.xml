@@ -19,4 +19,6 @@
     <string name="nome">Nome</string>
     <string name="editar_foto">Editar Foto</string>
     <string name="foto_colaborador">Foto Colaborador</string>
+    <string name="colaborador_fragment">Colaborador Fragment</string>
+    <string name="item_fragment">Item Fragment</string>
 </resources>

@@ -47,6 +47,8 @@ public class ColaboradorDao {
 
             res = pst.executeQuery();
 
+            listaColabs.clear();
+
             while(res.next()){
                 colab = new Colaborador(
                         res.getInt(1),

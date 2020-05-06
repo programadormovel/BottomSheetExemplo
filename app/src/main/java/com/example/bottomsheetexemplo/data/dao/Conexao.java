@@ -10,13 +10,14 @@ public class Conexao {
         Connection conn = null;
 
         try {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy
+                    .Builder()
                     .permitAll()
                     .build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection("jdbc:jtds:sqlserver://" +
-                    "192.168.0.231;databaseName=PRAP3;user=sa;" +
+                    "192.168.0.231:1433;databaseName=PRAP3;user=sa;" +
                     "password=123456;");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

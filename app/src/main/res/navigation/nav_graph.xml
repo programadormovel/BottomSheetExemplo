@@ -34,8 +34,8 @@
     <fragment
         android:id="@+id/itemFragment"
         android:name="com.example.bottomsheetexemplo.ItemFragment"
-        android:label="fragment_item_list"
-        tools:layout="@layout/fragment_item_list" >
+        android:label="@string/item_fragment"
+        tools:layout="@layout/fragment_item_list">
         <action
             android:id="@+id/action_itemFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
@@ -49,8 +49,8 @@
     <fragment
         android:id="@+id/colaboradorFragment"
         android:name="com.example.bottomsheetexemplo.ColaboradorFragment"
-        android:label="colaborador_fragment"
-        tools:layout="@layout/colaborador_fragment" >
+        android:label="@string/colaborador_fragment"
+        tools:layout="@layout/colaborador_fragment">
         <action
             android:id="@+id/action_colaboradorFragment_to_itemFragment"
             app:destination="@id/itemFragment" />

@@ -24,6 +24,7 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.bottomsheetexemplo.data.Colaborador;
 import com.google.android.material.snackbar.Snackbar;
@@ -33,8 +34,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -62,9 +61,11 @@ public class ColaboradorFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.colaborador_fragment, container, false);
+        return inflater.inflate(R.layout.colaborador_fragment,
+                container, false);
     }
 
     @Override
@@ -139,6 +140,9 @@ public class ColaboradorFragment extends Fragment {
                                 + ".jpg", imagemEnviada);
 
                         mViewModel.doAction(colaborador);
+
+                        /*NavHostFragment.findNavController(ColaboradorFragment.this)
+                                .navigate(R.id.action_colaboradorFragment_to_itemFragment);*/
                     }
                 });
 

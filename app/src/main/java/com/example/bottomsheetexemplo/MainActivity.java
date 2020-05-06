@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v) {
                 frag = getSupportFragmentManager().beginTransaction();
                 frag.replace(R.id.nav_host_fragment,
-                        new ColaboradorFragment());
-                frag.addToBackStack(null).commit();
+                        new ColaboradorFragment())
+                .addToBackStack(null).commit();
                 fabAccountPlus.setVisibility(View.INVISIBLE);
             }
         });
@@ -66,7 +66,8 @@ public class MainActivity extends AppCompatActivity
                         bottomSheetDialog.dismiss();
 
                         frag = getSupportFragmentManager().beginTransaction();
-                        frag.replace(R.id.nav_host_fragment, new ItemFragment())
+                        frag.replace(R.id.nav_host_fragment,
+                                new ItemFragment())
                                 .addToBackStack(null)
                                 .commit();
 
