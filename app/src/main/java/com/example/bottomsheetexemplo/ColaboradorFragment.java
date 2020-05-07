@@ -46,10 +46,9 @@ import static androidx.core.content.FileProvider.getUriForFile;
 public class ColaboradorFragment extends Fragment {
 
     //Declaração de constantes
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
-    private static final int REQUEST_TAKE_PHOTO = 2;
-    private static final int PERMISSAO_REQUEST = 3;
-    private static final int PEGA_FOTO = 4;
+    private static final int REQUEST_TAKE_PHOTO = 1;
+    private static final int PERMISSAO_REQUEST = 2;
+    private static final int PEGA_FOTO = 3;
     //Declaração de objetos criados nas telas activity e content
     private AppCompatImageView imageView;
     private AppCompatTextView textView;
@@ -211,14 +210,10 @@ public class ColaboradorFragment extends Fragment {
                                 .getApplicationContext().getPackageName()
                                 + ".fileprovider", photoFile);
 
-/*                        photoURI = getUriForFile(activity.getBaseContext(),
-                "com.example.bottomsheetexemplo.fileprovider", photoFile);*/
-
                 it.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
                 startActivityForResult(it, REQUEST_TAKE_PHOTO);
             }
-
         }
     }
 
@@ -255,36 +250,21 @@ public class ColaboradorFragment extends Fragment {
         // Decodifica o arquivo de imagem para o Bitmap que preencherá a View
         bmOptions.inJustDecodeBounds = false;
         bmOptions.inSampleSize = scaleFactor;
-        //bmOptions.inPurgeable = true;
+        bmOptions.inPurgeable = true;
 
         // Cria o bitmap da imagem capturada
         bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
-        /*// recuperada do SD Card
-        InputStream inputStream = null;
 
-        // recuperando a sequencia de entrada, baseada no caminho (uri)
-        // da imagem
-        try {
-            inputStream = activity.getContentResolver().openInputStream(photoURI);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        bitmap = BitmapFactory.decodeStream(inputStream);*/
         // Apresenta a imagem na tela
         imageView.setImageBitmap(bitmap);
     }
-
 
 
     // Método que retorna o resultado da chamada da câmera pela Intent
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         imageView = activity.findViewById(R.id.fotoColab);
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            bitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(bitmap);
-        } else if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+       if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
             // Chamada do método de adição da imagem na galeria
             galleryAddPic();
             // Definição das dimensões da imagem
