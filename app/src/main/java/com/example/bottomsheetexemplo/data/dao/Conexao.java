@@ -16,9 +16,13 @@ public class Conexao {
                     .build();
             StrictMode.setThreadPolicy(policy);
             Class.forName("net.sourceforge.jtds.jdbc.Driver").newInstance();
+            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
             conn = DriverManager.getConnection("jdbc:jtds:sqlserver://" +
-                    "192.168.0.231:1433;databaseName=PRAP3;user=sa;" +
+                    "192.168.0.231;databaseName=PRAP3;user=sa;" +
                     "password=123456;");
+            /*conn = DriverManager.getConnection("jdbc:sqlserver://" +
+                    "192.168.0.231:1433;databaseName=PRAP3;user=sa;" +
+                    "password=123456;");*/
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

@@ -2,19 +2,16 @@ package com.example.bottomsheetexemplo;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -22,16 +19,11 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-import androidx.core.os.EnvironmentCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
-
 import com.example.bottomsheetexemplo.data.Colaborador;
 import com.google.android.material.snackbar.Snackbar;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,7 +31,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import static android.app.Activity.RESULT_OK;
 import static androidx.core.content.FileProvider.getUriForFile;
 
@@ -125,7 +116,6 @@ public class ColaboradorFragment extends Fragment {
                                 .navigate(R.id.action_colaboradorFragment_to_itemFragment);*/
                     }
                 });
-
 
         //Botão para editar foto do colaborador
         activity.findViewById(R.id.editFotoColab)
@@ -259,7 +249,6 @@ public class ColaboradorFragment extends Fragment {
         imageView.setImageBitmap(bitmap);
     }
 
-
     // Método que retorna o resultado da chamada da câmera pela Intent
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -296,7 +285,6 @@ public class ColaboradorFragment extends Fragment {
         }
     }
 
-
     private File createImageFile() throws IOException {
         textView = activity.findViewById(R.id.textView);
 
@@ -320,7 +308,6 @@ public class ColaboradorFragment extends Fragment {
         File imagePath = new File(activity.getBaseContext().getExternalFilesDir(null),
                 "images");
         File image = new File(imagePath, "default_image.jpg");
-
 
         // Salva um arquivo: caminho para utilização com ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
